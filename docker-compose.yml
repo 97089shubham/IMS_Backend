@@ -1,0 +1,31 @@
+#version : "3.7"
+#
+#services:
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - my-network
+#  mysql:
+#    image: mysql:latest
+#    environment:
+#      MYSQL_DATABASE: 'inventoryManagement'
+#      MYSQL_USER: 'user'
+#      MYSQL_PASSWORD: 'password'
+#      MYSQL_ROOT_PASSWORD: 'password'
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - ims-data:/var/lib/mysql
+#    networks:
+#      - my-network
+##
+#networks:
+#  my-network:
+##      driver: bridge
+## for running both containers on same machine
+#
+#
+#volumes:
+#  ims-data:
