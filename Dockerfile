@@ -31,3 +31,11 @@ COPY --from=build /app/target/InventoryManagement.jar /InventoryManagement.jar
 
 # Define the command to run the JAR file
 ENTRYPOINT ["java", "-jar", "/InventoryManagement.jar"]
+
+#docker build -t inventory-management-app .
+#
+#docker run -p 8080:8080 inventory-management-app (image name)
+
+#docker run --name mysql-container --network my-network -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=inventoryManagement -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3307:3306 -d mysql:latest
+
+
