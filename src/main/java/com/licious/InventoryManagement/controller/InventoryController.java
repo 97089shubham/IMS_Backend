@@ -4,7 +4,7 @@ import com.licious.InventoryManagement.dto.request.*;
 import com.licious.InventoryManagement.dto.response.*;
 import com.licious.InventoryManagement.exception.AddInventoryException;
 import com.licious.InventoryManagement.exception.InventoryDeductionException;
-import com.licious.InventoryManagement.service.IInventoryService;
+import com.licious.InventoryManagement.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,12 @@ import static com.licious.InventoryManagement.constants.RoutesConstants.INVENTOR
  * Controller class to handle inventory-related HTTP requests.
  */
 @Controller
-@RestController
 @RequestMapping(INVENTORY)
 @CrossOrigin("http://localhost:3000")
 @RequiredArgsConstructor
 public class InventoryController {
 
-    private final IInventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     /**
      * Endpoint to get the list of cities.
