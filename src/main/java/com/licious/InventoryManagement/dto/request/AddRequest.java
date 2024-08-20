@@ -1,5 +1,7 @@
 package com.licious.InventoryManagement.dto.request;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddRequest {
+    @Positive(message = "Reference Id must be positive")
     private int referenceId;
-    private List<AddProductRequest> products;
+    private List<@Valid AddProductRequest> products;
 }

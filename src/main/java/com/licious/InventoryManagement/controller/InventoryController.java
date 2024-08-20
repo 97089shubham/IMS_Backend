@@ -8,6 +8,7 @@ import com.licious.InventoryManagement.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static com.licious.InventoryManagement.constants.RoutesConstants.INVENTORY;
@@ -95,7 +96,7 @@ public class InventoryController {
     public ResponseEntity<Response> addInventory(
             @PathVariable("city_id") int cityId,
             @RequestHeader("client_id") int clientId,
-            @RequestBody AddRequest body) throws AddInventoryException {
+            @Validated @RequestBody AddRequest body) throws AddInventoryException {
         Response response = inventoryService.addInventory(cityId, clientId, body);
         return ResponseEntity.ok(response);
     }
@@ -113,7 +114,7 @@ public class InventoryController {
     public ResponseEntity<Response> deductInventory(
             @PathVariable("city_id") int cityId,
             @RequestHeader("client_id") int clientId,
-            @RequestBody DeductRequest body) throws InventoryDeductionException {
+            @Validated @RequestBody DeductRequest body) throws InventoryDeductionException {
         Response response = inventoryService.deductInventory(cityId, clientId, body);
         return ResponseEntity.ok(response);
     }

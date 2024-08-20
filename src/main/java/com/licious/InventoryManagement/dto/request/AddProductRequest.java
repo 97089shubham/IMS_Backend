@@ -1,5 +1,7 @@
 package com.licious.InventoryManagement.dto.request;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 /**
@@ -13,9 +15,11 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class AddProductRequest {
+    @NotNull(message = "SKU ID cannot be null")
     private String skuId;
     private String skuName;
     private String uom;
+    @Positive(message = "Quantity must be positive")
     private int quantity;
 }
 

@@ -1,6 +1,9 @@
 package com.licious.InventoryManagement.dto.request;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
  */
 @Data
 public class DeductRequest {
+    @Positive(message = "Reference Id must be positive")
     private int referenceId;
-    private List<DeductProductRequest> products;
+    private List<@Valid DeductProductRequest> products;
 }
