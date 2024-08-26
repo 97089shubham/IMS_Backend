@@ -29,7 +29,7 @@ public class InventoryController {
      *
      * @return ResponseEntity with the list of cities.
      */
-    @GetMapping("/cities")
+    @GetMapping("/city")
     public ResponseEntity<Response> getCitiesList() {
         Response response = inventoryService.getLocations();
         return ResponseEntity.ok(response);
@@ -40,7 +40,7 @@ public class InventoryController {
      *
      * @return ResponseEntity with the list of audits.
      */
-    @GetMapping("/audits")
+    @GetMapping("/audit")
     public ResponseEntity<Response> getAudits() {
         Response response = inventoryService.getAudits();
         return ResponseEntity.ok(response);
@@ -51,7 +51,7 @@ public class InventoryController {
      *
      * @return ResponseEntity with the list of all inventory items.
      */
-    @GetMapping("/inventories")
+    @GetMapping("/inventory")
     public ResponseEntity<Response> getAllInventory() {
         Response response = inventoryService.getAllInventory();
         return ResponseEntity.ok(response);
@@ -62,7 +62,7 @@ public class InventoryController {
      *
      * @return ResponseEntity with the list of all SKUs.
      */
-    @GetMapping("/skus")
+    @GetMapping("/sku")
     public ResponseEntity<Response> getAllSkus() {
         Response response = inventoryService.getAllSkus();
         return ResponseEntity.ok(response);
@@ -75,7 +75,7 @@ public class InventoryController {
      * @param clientId the ID of the client.
      * @return ResponseEntity with the list of products for the given city.
      */
-    @GetMapping("/skus/{city_id}")
+    @GetMapping("/sku/{city_id}")
     public ResponseEntity<Response> getProductsList(
             @PathVariable("city_id") int cityId,
             @RequestHeader("client_id") int clientId) {
