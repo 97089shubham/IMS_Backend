@@ -1,10 +1,10 @@
-package com.licious.InventoryManagement.validation;
+package com.licious.InventoryManagement.validations;
 
 import com.licious.InventoryManagement.dao.SkusDao;
 import com.licious.InventoryManagement.dto.request.AddProductRequest;
 import com.licious.InventoryManagement.dto.request.AddRequest;
 import com.licious.InventoryManagement.dto.response.SkusResponse;
-import com.licious.InventoryManagement.exception.AddInventoryException;
+import com.licious.InventoryManagement.exceptions.AddInventoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

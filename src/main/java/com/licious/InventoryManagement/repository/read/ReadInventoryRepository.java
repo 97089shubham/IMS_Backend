@@ -1,4 +1,4 @@
-package com.licious.InventoryManagement.repository;
+package com.licious.InventoryManagement.repository.read;
 
 import com.licious.InventoryManagement.dto.response.ProductResponse;
 import com.licious.InventoryManagement.entity.Inventory;
@@ -6,16 +6,10 @@ import com.licious.InventoryManagement.entity.PK.InventoryId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Repository interface for performing CRUD operations on the Inventory entity.
- * Extends JpaRepository to provide standard database operations.
- */
-@Repository
-public interface InventoryRepository extends JpaRepository<Inventory, InventoryId> {
+public interface ReadInventoryRepository extends JpaRepository<Inventory, InventoryId> {
 
     /**
      * Finds products for a specific city and returns them as a list of ProductResponseDto.
@@ -48,4 +42,5 @@ public interface InventoryRepository extends JpaRepository<Inventory, InventoryI
      */
     @Query("SELECT i.quantity FROM Inventory i WHERE i.skuId = :skuId AND i.cityId = :cityId")
     Integer findQuantityBySkuIdAndCityId(@Param("skuId") String skuId, @Param("cityId") int cityId);
+
 }

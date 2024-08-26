@@ -1,10 +1,10 @@
-package com.licious.InventoryManagement.service;
+package com.licious.InventoryManagement.services;
 
 import com.licious.InventoryManagement.dto.request.AddRequest;
 import com.licious.InventoryManagement.dto.request.DeductRequest;
 import com.licious.InventoryManagement.dto.response.*;
-import com.licious.InventoryManagement.exception.AddInventoryException;
-import com.licious.InventoryManagement.exception.InventoryDeductionException;
+import com.licious.InventoryManagement.exceptions.AddInventoryException;
+import com.licious.InventoryManagement.exceptions.InventoryDeductionException;
 
 public interface InventoryService {
 

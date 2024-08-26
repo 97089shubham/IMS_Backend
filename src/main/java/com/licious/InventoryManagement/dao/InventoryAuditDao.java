@@ -2,7 +2,9 @@ package com.licious.InventoryManagement.dao;
 
 import com.licious.InventoryManagement.dto.response.AuditResponse;
 import com.licious.InventoryManagement.entity.InventoryAudit;
-import com.licious.InventoryManagement.repository.InventoryAuditRepository;
+//import com.licious.InventoryManagement.repository.InventoryAuditRepository;
+import com.licious.InventoryManagement.repository.read.ReadInventoryAuditRepository;
+import com.licious.InventoryManagement.repository.write.WriteInventoryAuditRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class InventoryAuditDao {
 
-    private final InventoryAuditRepository inventoryAuditRepository;
+//    private final InventoryAuditRepository inventoryAuditRepository;
+
+    private final ReadInventoryAuditRepository readInventoryAuditRepository;
+    private final WriteInventoryAuditRepository writeInventoryAuditRepository;
 
     /**
      * Saves the provided InventoryAudit entity to the database.
@@ -26,7 +31,8 @@ public class InventoryAuditDao {
      * @param inventoryAudit the InventoryAudit entity to be saved
      */
     public void saveInventoryAudit(InventoryAudit inventoryAudit){
-        inventoryAuditRepository.save(inventoryAudit);
+//        inventoryAuditRepository.save(inventoryAudit);
+        writeInventoryAuditRepository.save(inventoryAudit);
     }
 
     /**
@@ -35,7 +41,8 @@ public class InventoryAuditDao {
      * @return a list of AuditResponse DTOs representing all inventory audit records
      */
     public List<AuditResponse> getAudits() {
-        List<InventoryAudit> audits = inventoryAuditRepository.findAll();
+        List<InventoryAudit> audits = readInventoryAuditRepository.findAll();
+//        List<InventoryAudit> audits = inventoryAuditRepository.findAll();
         return audits.stream()
                 .map(this::convertToAuditResponseDto)
                 .collect(Collectors.toList());

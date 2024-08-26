@@ -1,10 +1,10 @@
-package com.licious.InventoryManagement.controller;
+package com.licious.InventoryManagement.controllers;
 
 import com.licious.InventoryManagement.dto.request.*;
 import com.licious.InventoryManagement.dto.response.*;
-import com.licious.InventoryManagement.exception.AddInventoryException;
-import com.licious.InventoryManagement.exception.InventoryDeductionException;
-import com.licious.InventoryManagement.service.InventoryService;
+import com.licious.InventoryManagement.exceptions.AddInventoryException;
+import com.licious.InventoryManagement.exceptions.InventoryDeductionException;
+import com.licious.InventoryManagement.services.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

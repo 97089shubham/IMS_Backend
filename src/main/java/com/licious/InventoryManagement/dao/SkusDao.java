@@ -2,7 +2,9 @@ package com.licious.InventoryManagement.dao;
 
 import com.licious.InventoryManagement.dto.response.SkusResponse;
 import com.licious.InventoryManagement.entity.Skus;
-import com.licious.InventoryManagement.repository.SkusRepository;
+//import com.licious.InventoryManagement.repository.SkusRepository;
+import com.licious.InventoryManagement.repository.read.ReadSkusRepository;
+import com.licious.InventoryManagement.repository.write.WriteSkusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SkusDao {
 
-    private final SkusRepository skusRepository;
+//    private final SkusRepository skusRepository;
+
+    private final ReadSkusRepository readSkusRepository;
+    private final WriteSkusRepository writeSkusRepository;
 
     /**
      * Retrieves a list of all SKUs and converts them to SkusResponse DTOs.
@@ -26,7 +31,8 @@ public class SkusDao {
      * @return a list of SkusResponse DTOs representing all SKU records
      */
     public List<SkusResponse> getAllSkus() {
-        List<Skus> skus = skusRepository.findAll();
+//        List<Skus> skus = skusRepository.findAll();
+        List<Skus> skus = readSkusRepository.findAll();
         return skus.stream()
                 .map(this::convertToSkuResponseDto)
                 .collect(Collectors.toList());

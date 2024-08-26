@@ -3,7 +3,9 @@ package com.licious.InventoryManagement.dao;
 import com.licious.InventoryManagement.dto.response.InventoryResponse;
 import com.licious.InventoryManagement.dto.response.ProductResponse;
 import com.licious.InventoryManagement.entity.Inventory;
-import com.licious.InventoryManagement.repository.InventoryRepository;
+//import com.licious.InventoryManagement.repository.InventoryRepository;
+import com.licious.InventoryManagement.repository.read.ReadInventoryRepository;
+import com.licious.InventoryManagement.repository.write.WriteInventoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +21,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class InventoryDao {
 
-    private final InventoryRepository inventoryRepository;
+//    private final InventoryRepository inventoryRepository;
+
+    private final ReadInventoryRepository readInventoryRepository;
+    private final WriteInventoryRepository writeInventoryRepository;
 
     /**
      * Saves the provided Inventory entity to the database.
@@ -27,7 +32,8 @@ public class InventoryDao {
      * @param inventory the Inventory entity to be saved
      */
     public void saveInventory(Inventory inventory){
-        inventoryRepository.save(inventory);
+        writeInventoryRepository.save(inventory);
+//        inventoryRepository.save(inventory);
     }
 
     /**
@@ -38,7 +44,8 @@ public class InventoryDao {
      * @return the Inventory entity matching the given SKU ID and city ID
      */
     public Inventory findBySkuIdAndCityId(String skuId, int cityId) {
-        return inventoryRepository.findBySkuIdAndCityId(skuId, cityId);
+//        return inventoryRepository.findBySkuIdAndCityId(skuId, cityId);
+        return readInventoryRepository.findBySkuIdAndCityId(skuId, cityId);
     }
 
     /**
@@ -49,7 +56,8 @@ public class InventoryDao {
      * @return the quantity of the inventory item
      */
     public int getQuantity(String skuId, int cityId){
-        return inventoryRepository.findQuantityBySkuIdAndCityId(skuId, cityId);
+//        return inventoryRepository.findQuantityBySkuIdAndCityId(skuId, cityId);
+        return readInventoryRepository.findQuantityBySkuIdAndCityId(skuId, cityId);
     }
 
     /**
@@ -59,7 +67,8 @@ public class InventoryDao {
      * @return a list of ProductResponseDto objects for the given city ID
      */
     public List<ProductResponse> getProductsList(int cityId){
-        return inventoryRepository.findProductsByCityId(cityId);
+//        return inventoryRepository.findProductsByCityId(cityId);
+        return readInventoryRepository.findProductsByCityId(cityId);
     }
 
     /**
@@ -68,7 +77,8 @@ public class InventoryDao {
      * @return a list of InventoryResponse DTOs representing all inventory records
      */
     public List<InventoryResponse> getAllInventory() {
-        List<Inventory> inventories = inventoryRepository.findAll();
+//        List<Inventory> inventories = inventoryRepository.findAll();
+        List<Inventory> inventories = readInventoryRepository.findAll();
         return inventories.stream()
                 .map(this::convertToInventoryResponseDto)
                 .collect(Collectors.toList());

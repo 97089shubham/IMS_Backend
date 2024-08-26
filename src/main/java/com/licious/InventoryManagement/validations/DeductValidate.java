@@ -1,10 +1,10 @@
-package com.licious.InventoryManagement.validation;
+package com.licious.InventoryManagement.validations;
 
 import com.licious.InventoryManagement.dao.InventoryDao;
 import com.licious.InventoryManagement.dto.request.DeductProductRequest;
 import com.licious.InventoryManagement.dto.request.DeductRequest;
 import com.licious.InventoryManagement.entity.Inventory;
-import com.licious.InventoryManagement.exception.InventoryDeductionException;
+import com.licious.InventoryManagement.exceptions.InventoryDeductionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.licious.InventoryManagement.service;
+package com.licious.InventoryManagement.services;
 
 import com.licious.InventoryManagement.dao.InventoryAuditDao;
 import com.licious.InventoryManagement.dao.InventoryDao;
@@ -7,11 +7,12 @@ import com.licious.InventoryManagement.dao.SkusDao;
 import com.licious.InventoryManagement.dto.request.*;
 import com.licious.InventoryManagement.dto.response.*;
 import com.licious.InventoryManagement.entity.Inventory;
-import com.licious.InventoryManagement.exception.AddInventoryException;
-import com.licious.InventoryManagement.exception.InventoryDeductionException;
-import com.licious.InventoryManagement.util.Audit;
-import com.licious.InventoryManagement.validation.AddValidate;
-import com.licious.InventoryManagement.validation.DeductValidate;
+import com.licious.InventoryManagement.exceptions.AddInventoryException;
+import com.licious.InventoryManagement.exceptions.InventoryDeductionException;
+import com.licious.InventoryManagement.utils.Audit;
+import com.licious.InventoryManagement.utils.CreateResponse;
+import com.licious.InventoryManagement.validations.AddValidate;
+import com.licious.InventoryManagement.validations.DeductValidate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +32,12 @@ public class InventoryServiceImp implements InventoryService {
     private final DeductValidate deductValidate;
     private final Audit audit;
 
+    private final CreateResponse createResponse;
+
     // Method to get the list of products available in a specific city
     public Response getProductsList(int cityId) {
         List<ProductResponse> products = inventoryDao.getProductsList(cityId);
-        Response response = Response.builder()
-                .message("success")
-                .data(Optional.ofNullable(products))
-                .build();
+        Response response = createResponse.create("success", Optional.ofNullable(products));
         return response;
     }
 
@@ -45,11 +45,7 @@ public class InventoryServiceImp implements InventoryService {
     // Method to retrieve all locations
     public Response getLocations() {
         List<LocationResponse> locations = locationDao.getLocations();
-        Response response = Response.builder()
-                .message("success")
-                .data(Optional.ofNullable(locations))
-                .build();
-
+        Response response = createResponse.create("success", Optional.ofNullable(locations));
         return response;
     }
 
@@ -57,22 +53,14 @@ public class InventoryServiceImp implements InventoryService {
     // Method to get all inventory audit records
     public Response getAudits() {
         List<AuditResponse> audits = inventoryAuditDao.getAudits();
-        Response response = Response.builder()
-                .message("success")
-                .data(Optional.ofNullable(audits))
-                .build();
-
+        Response response = createResponse.create("success", Optional.ofNullable(audits));
         return response;
     }
 
     // Method to get all SKUs (Stock Keeping Units)
     public Response getAllSkus() {
         List<SkusResponse> skus = skusDao.getAllSkus();
-        Response response = Response.builder()
-                .message("success")
-                .data(Optional.ofNullable(skus))
-                .build();
-
+        Response response = createResponse.create("success", Optional.ofNullable(skus));
         return response;
     }
 
@@ -80,11 +68,7 @@ public class InventoryServiceImp implements InventoryService {
     public Response getAllInventory() {
         System.out.println("Hello 2"); // Debugging line; should be removed in production
         List<InventoryResponse> inventories = inventoryDao.getAllInventory();
-        Response response = Response.builder()
-                .message("success")
-                .data(Optional.ofNullable(inventories))
-                .build();
-
+        Response response = createResponse.create("success", Optional.ofNullable(inventories));
         return response;
     }
 
@@ -132,10 +116,7 @@ public class InventoryServiceImp implements InventoryService {
             }
         }
 
-        Response response = Response.builder()
-                .message("Products added successfully")
-                .data(Optional.of(requestDto))
-                .build();
+        Response response = createResponse.create("Products added successfully", Optional.of(requestDto));
         return response;
     }
 
@@ -173,10 +154,7 @@ public class InventoryServiceImp implements InventoryService {
             }
         }
 
-        Response response = Response.builder()
-                .message("Products deducted successfully")
-                .data(Optional.of(requestDto))
-                .build();
+        Response response = createResponse.create("Products deducted successfully", Optional.of(requestDto));
         return response;
     }
 }

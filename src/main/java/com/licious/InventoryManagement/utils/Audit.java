@@ -1,4 +1,4 @@
-package com.licious.InventoryManagement.util;
+package com.licious.InventoryManagement.utils;
 
 import com.licious.InventoryManagement.dao.InventoryAuditDao;
 import com.licious.InventoryManagement.dao.InventoryDao;

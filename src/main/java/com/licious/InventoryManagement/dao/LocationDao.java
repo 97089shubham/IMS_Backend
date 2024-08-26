@@ -2,7 +2,9 @@ package com.licious.InventoryManagement.dao;
 
 import com.licious.InventoryManagement.dto.response.LocationResponse;
 import com.licious.InventoryManagement.entity.Location;
-import com.licious.InventoryManagement.repository.LocationRepository;
+//import com.licious.InventoryManagement.repository.LocationRepository;
+import com.licious.InventoryManagement.repository.read.ReadLocationRepository;
+import com.licious.InventoryManagement.repository.write.WriteLocationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LocationDao {
 
-    private final LocationRepository locationRepository;
+//    private final LocationRepository locationRepository;
+    private final ReadLocationRepository readLocationRepository;
+    private final WriteLocationRepository writeLocationRepository;
 
     /**
      * Retrieves a list of all locations and converts them to LocationResponse DTOs.
@@ -26,7 +30,8 @@ public class LocationDao {
      * @return a list of LocationResponse DTOs representing all location records
      */
     public List<LocationResponse> getLocations() {
-        List<Location> locations = locationRepository.findAll();
+//        List<Location> locations = locationRepository.findAll();
+        List<Location> locations = readLocationRepository.findAll();
         return locations.stream()
                 .map(this::convertToLocationResponseDto)
                 .collect(Collectors.toList());

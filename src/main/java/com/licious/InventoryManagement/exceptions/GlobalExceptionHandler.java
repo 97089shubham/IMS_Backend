@@ -1,4 +1,4 @@
-package com.licious.InventoryManagement.exception;
+package com.licious.InventoryManagement.exceptions;
 
 import com.licious.InventoryManagement.dto.error.ErrorAddResponse;
 import com.licious.InventoryManagement.dto.error.ErrorDeductResponse;

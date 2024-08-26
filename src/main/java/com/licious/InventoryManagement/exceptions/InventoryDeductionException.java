@@ -1,4 +1,4 @@
-package com.licious.InventoryManagement.exception;
+package com.licious.InventoryManagement.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
